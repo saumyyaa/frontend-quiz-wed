@@ -1,26 +1,28 @@
 "use client";
 
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import useSound from "use-sound";
 
-const correctAnswers = ["Meow-Meow", "ice cream", "yellow", "Infinite"];
+const correct = ["Meow-Meow", "ice cream", "yellow", "Infinite"];
 
-export default function Results() {
-  const params = useSearchParams();
+export default function PageWrapper() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ResultPage />
+    </Suspense>
+  );
+}
+
+function ResultPage() {
   const router = useRouter();
-
-  // Get user answers from URL
+  const params = useSearchParams();
   const answers = JSON.parse(params.get("ans") || "[]");
 
-  // Score calculation
-  const score = answers.filter(
-    (ans: string, i: number) => ans === correctAnswers[i]
-  ).length;
-
-  const percent = Math.round((score / correctAnswers.length) * 100);
+  const score = answers.filter((a: string, i: number) => a === correct[i]).length;
+  const percent = Math.round((score / correct.length) * 100);
 
   // Smooth counter state
   const [counter, setCounter] = useState(0);
@@ -32,7 +34,7 @@ export default function Results() {
   const [mounted, setMounted] = useState(false);
 
   // Click sound for button
-  const [playClick] = useSound("/sounds/click.mp3", { volume: 0.4 });
+  const [playClick] = useSound("/sounds/click.mp3", { volume: 0.4, preload: true });
 
   // Reaction logic
   const isGood = percent >= 60;
@@ -71,9 +73,7 @@ export default function Results() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-200 via-blue-300 to-cyan-200 p-6 relative overflow-hidden">
-
-      {/* CONFETTI CELEBRATION (no files needed) */}
-      {mounted && showConfetti && <Confetti recycle={false} numberOfPieces={300} />}
+      {mounted && showConfetti && <Confetti recycle={false} numberOfPieces={200} />}
 
       {/* RESULTS CARD */}
       <motion.div
@@ -114,7 +114,7 @@ export default function Results() {
             playClick();
             router.push("/");
           }}
-          className="px-8 py-3 bg-blue-600 text-white rounded-xl shadow-lg hover:bg-blue-700"
+          className="px-8 py-3 bg-blue-600 text-white rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 cursor-pointer"
         >
           Start Again
         </button>
