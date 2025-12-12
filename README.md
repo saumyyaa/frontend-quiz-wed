@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Quiz - Wedding Edition 🎉
+
+A fun interactive quiz app built with Next.js. Test your knowledge with a series of questions and get instant feedback with sounds and animations.
+
+## What's This About?
+
+This is a quiz application I built for The Wedding Company. It features smooth animations, sound effects, and a clean UI. Users answer questions, get immediate feedback, and see their score at the end with a nice confetti celebration.
+
+## Features
+
+- **4 Questions** covering various topics
+- **Sound Effects** - Click sounds, correct/wrong answer feedback
+- **Smooth Animations** - Powered by Framer Motion
+- **Progress Tracking** - Visual progress bar showing which question you're on
+- **Score Page** - See your results with a percentage score
+- **Responsive Design** - Works on different screen sizes
+- **Confetti Celebration** - Because who doesn't love confetti? 🎊
+
+## Tech Stack
+
+- **Next.js 16** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **use-sound** - Sound effects
+- **react-confetti** - Confetti animations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+Make sure you have Node.js installed (v18 or higher recommended).
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/saumyyaa/frontend-quiz-wed.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
+```bash
+cd frontend-quiz-wed
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Install dependencies:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+wed/
+├── app/
+│   ├── components/       # Reusable components
+│   │   ├── SoundButton.tsx
+│   │   └── TransitionWrapper.tsx
+│   ├── result/          # Results page
+│   ├── page.tsx         # Main quiz page
+│   └── layout.tsx       # Root layout
+├── public/
+│   ├── images/          # Images and GIFs
+│   └── sounds/          # Sound files
+└── package.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How It Works
 
-## Deploy on Vercel
+1. Start the quiz and answer the first question
+2. Select an option - you'll hear a sound (correct or wrong)
+3. Use the arrow buttons to navigate between questions
+4. On the last question, click Submit
+5. View your score and get some confetti if you did well!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Building for Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
+
+## Notes
+
+- The "best of luck" image and paw GIF only appear on the first question
+- Sounds are preloaded for better performance
+- The app uses client-side routing for smooth navigation
+
+## License
+
+This project is private and proprietary.
+
+---
+
+Built with ❤️ for The Wedding Company
